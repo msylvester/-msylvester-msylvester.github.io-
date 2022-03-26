@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Component } from 'react';
-import '../styles/App.css';
+import './App.css';
 import ColorPicker from '../ColorPicker';
 import SelectPaint from '../Select/Select';
 import { noRows, noCols, hexToRgb } from './utils';
