@@ -19,7 +19,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      inputColor: hexToRgb('#FFFFFF'),
+      inputColor: hexToRgb('#000000'),
       action: 'paint',
       colors: {},
     };
