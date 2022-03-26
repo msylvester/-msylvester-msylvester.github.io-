@@ -14,7 +14,9 @@ npm start
 npm run build 
 npm install -g serve
 serve -s build
+```
 or to specifiy port 
+```bash
 serve -s build -l 4000
 ```
 
