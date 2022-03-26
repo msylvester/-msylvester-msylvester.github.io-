@@ -1,5 +1,4 @@
-### SpotLink: Paintbucket BFS challenge
-
+### SpotLink: Paintbucket BFS challenge (Visit the App [Here](https://msylvester.github.io/))
 ## Background 
 The application builds a 10 row by 15 column grid using React.js. The app uses two inputs, a color  picker and a select input, to allow a user to change the color of a table cell. Originally, the app or th UI was built for the app Sandbox. The implmentation at that point included three files: index.html, index.js. styles.css.
 
