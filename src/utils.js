@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * @name hexToRgb 
  * @param {string} hex the hex version of the color 
@@ -23,3 +25,5 @@ export const hexToRgb = (hex, eColor = 'black') => {
  * @constant noRows 
  */
 export const noCols = 15,  noRows = 10; 
+
+/* eslint-enable */

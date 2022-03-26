@@ -1,3 +1,4 @@
+/* eslint-disable */
 const ColorPicker = props => {
     return (<input
         type="color"
@@ -6,3 +7,4 @@ const ColorPicker = props => {
     />);
 };
 export default ColorPicker;
+/* eslint-enable */

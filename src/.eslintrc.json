@@ -18,5 +18,7 @@
         "react"
     ],
     "rules": {
+        "no-multiple-empty-lines": "off",
+        "eol-last": "off"
     }
 }

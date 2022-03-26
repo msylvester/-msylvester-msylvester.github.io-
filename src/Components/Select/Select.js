@@ -1,3 +1,4 @@
+/* eslint-disable */
 import options from './utils';
 const SelectPaint = props => {
     const { selected = '', handleChange } = props;
@@ -10,6 +11,7 @@ const SelectPaint = props => {
         </select>
     );
 };
+export default SelectPaint;
+/* eslint-enable */
 
 
-export default SelectPaint

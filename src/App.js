@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Component } from 'react';
 import './App.css';
 import ColorPicker from './Components/ColorPicker';
@@ -212,3 +213,4 @@ class App extends Component {
   };
 }
 export default App;
+/* eslint-enable */

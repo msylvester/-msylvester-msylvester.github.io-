@@ -1,3 +1,4 @@
+/* eslint-disable */
 const options = [
     {
       label: "Paint",
@@ -7,7 +8,7 @@ const options = [
       label: "Fill",
       value: "fill",
     },
-
   ];
-  
 export default options;
+/* eslint-enable */
+
