@@ -6,7 +6,7 @@ import SelectPaint from './Components/Select/Select';
 import { noRows, noCols, hexToRgb } from './utils';
 
 /**
- * @name mafkeInc augments the base Array class by using this funciton to create a list from 1 to N
+ * @name makeInc augments the base Array class by using this funciton to create a list from 1 to N
  * @param {N} N is the size of the array
  * @param {*} f is a function for which to generate the values in the list
  * @returns a list from 1 to N
