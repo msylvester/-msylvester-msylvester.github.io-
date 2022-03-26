@@ -1,4 +1,4 @@
-### Spot Paint
+### SpotLink: Paintbucket BFS challenge
 
 ## Background 
 The application builds a 10 row by 15 column grid using React.js. The app uses two inputs, a color  picker and a select input, to allow a user to change the color of a table cell. Originally, the app or th UI was build using three files: index.html, index.js. styles.css.
