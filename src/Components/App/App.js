@@ -7,9 +7,9 @@ import { noRows, noCols, hexToRgb } from './utils';
 
 /**
  * @name makeInc augments the base Array class by using this funciton to create a list from 1 to N
- * @param {N} N is the size of the array
- * @param {*} f is a function for which to generate the values in the list
- * @returns a list from 1 to N
+ * @param {int} N is the size of the array
+ * @param {function} f is a function for which to generate the values in the list
+ * @returns an array with elements equal to 1 at index 0 and N at index N-1
  */
 Array.prototype.makeInc = (N, f) => {
   return [...Array(N).keys()].map(f).map((n) => n);
