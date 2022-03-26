@@ -1,7 +1,7 @@
 ### SpotLink: Paintbucket BFS challenge
 
 ## Background 
-The application builds a 10 row by 15 column grid using React.js. The app uses two inputs, a color  picker and a select input, to allow a user to change the color of a table cell. Originally, the app or th UI was build using three files: index.html, index.js. styles.css.
+The application builds a 10 row by 15 column grid using React.js. The app uses two inputs, a color  picker and a select input, to allow a user to change the color of a table cell. Originally, the app or th UI was built for the app Sandbox. The implmentation at that point included three files: index.html, index.js. styles.css.
 
 ## Original Implmentation
 The applicaiton existed on Sandbox and had three files
@@ -9,7 +9,7 @@ The applicaiton existed on Sandbox and had three files
 2) index.js
 3) styles.css
 
-Index.HTMl instantiated the Table and the Select / Color inputs. It also handled the linking of CSS and the JS file
+Index.html instantiated the Table and the Select / Color inputs. It also handled the linking of CSS and the JS file
 
 Index.js had three functions. CreateTabl, onClick, and instantiating the table by calling CreateTable with parameters 10, 15. 
 
