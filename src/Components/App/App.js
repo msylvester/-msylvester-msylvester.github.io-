@@ -1,9 +1,9 @@
 /* eslint-disable */
-import { Component } from 'react';
-import './App.css';
-import ColorPicker from '../ColorPicker';
-import SelectPaint from '../Select/Select';
-import { noRows, noCols, hexToRgb } from './utils';
+import { Component } from "react";
+import "./App.css";
+import ColorPicker from "../ColorPicker";
+import SelectPaint from "../Select/Select";
+import { noRows, noCols, hexToRgb } from "./utils";
 
 /**
  * @name makeInc augments the base Array class by using this funciton to create a list from 1 to N
@@ -12,39 +12,39 @@ import { noRows, noCols, hexToRgb } from './utils';
  * @returns an array with elements equal to 1 at index 0 and N at index N-1
  */
 Array.prototype.makeInc = (N, f) => {
-  return [...Array(N).keys()].map(f).map((n) => n);
+  return [...Array(N).keys()].map(f).map(n => n);
 };
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      inputColor: hexToRgb('#000000'),
-      action: 'paint',
+      inputColor: hexToRgb("#000000"),
+      action: "paint",
       colors: {},
     };
   }
   componentDidMount() {
     let { colors } = this.state;
     []
-      .makeInc(noRows, (i) => i + 1)
-      .map((row) => {
+      .makeInc(noRows, i => i + 1)
+      .map(row => {
         []
-          .makeInc(noCols, (i) => i + 1)
-          .map((col) => {
-            colors[`${row}_${col}`] = hexToRgb('#FFFFFF');
+          .makeInc(noCols, i => i + 1)
+          .map(col => {
+            colors[`${row}_${col}`] = hexToRgb("#FFFFFF");
           });
       });
     this.setState({ colors });
   }
 
-  setColor = (inputColor) => {
+  setColor = inputColor => {
     this.setState({
       inputColor,
     });
   };
 
-  onClick = (e) => {
+  onClick = e => {
     const { action, inputColor, colors } = this.state,
       {
         target: {
@@ -53,15 +53,15 @@ class App extends Component {
         },
       } = e;
 
-    if (action === 'paint') {
+    if (action === "paint") {
       colors[id] = hexToRgb(inputColor);
       this.setState({ colors });
     }
-    if (action === 'fill')
+    if (action === "fill")
       this.bfs(parseInt(row), parseInt(col), colors, inputColor);
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     const {
       target: { value: action },
     } = e;
@@ -106,53 +106,30 @@ class App extends Component {
       let coord = queueBFS[0];
       const nRow = coord[0],
         nCol = coord[1],
-        nRowMinus = nRow - 1,
-        nRowPlus = nRow + 1,
-        nColPlus = nCol + 1,
-        nColMinus = nCol - 1,
         preColor = colors[`${nRow}_${nCol}`];
 
       colors[`${nRow}_${nCol}`] = newColor;
 
       queueBFS.shift();
 
-      // check pix on either side and above and below the cell clicked on
-      if (
-        this.validCoord(nRowPlus, nCol) &&
-        vis[`${nRowPlus}_${nCol}`] == 0 &&
-        colors[`${nRowPlus}_${nCol}`] == preColor
-      ) {
-        queueBFS.push([nRowPlus, nCol]);
-        vis[`${nRowPlus}_${nCol}`] = 1;
-      }
-      if (
-        this.validCoord(nRowMinus, nCol) &&
-        vis[`${nRowMinus}_${nCol}`] == 0 &&
-        colors[`${nRowMinus}_${nCol}`] == preColor
-      ) {
-        queueBFS.push([nRowMinus, nCol]);
-        vis[`${nRowMinus}_${nCol}`] = 1;
-      }
+      ["row", "col"].forEach(turn => {
+        [-1, 1].forEach(inc => {
+          let tempRow = turn === "row" ? parseInt(nRow) + parseInt(inc) : nRow,
+            tempCol = turn === "col" ? parseInt(nCol) + parseInt(inc) : nCol;
 
-      if (
-        this.validCoord(nRow, nColPlus) &&
-        vis[`${nRow}_${nColPlus}`] == 0 &&
-        colors[`${nRow}_${nColPlus}`] == preColor
-      ) {
-        queueBFS.push([nRow, nColPlus]);
-        vis[`${nRow}_${nColPlus}`] = 1;
-      }
-      if (
-        this.validCoord(nRow, nColMinus) &&
-        vis[`${nRow}_${nColMinus}`] == 0 &&
-        colors[`${nRow}_${nColMinus}`] == preColor
-      ) {
-        queueBFS.push([nRow, nColMinus]);
-        //console.log(`we added row:${nRow} // and we aded col:${nColMinus}`)
-        vis[`${nRow}_${nColMinus}`] = 1;
-      }
+          if (
+            this.validCoord(tempRow, tempCol) &&
+            vis[`${tempRow}_${tempCol}`] == 0 &&
+            colors[`${tempRow}_${tempCol}`] == preColor
+          ) {
+            queueBFS.push([tempRow, tempCol]);
+            vis[`${tempRow}_${tempCol}`] = 1;
+          }
+        });
+      });
+
     }
-    this.setState(colors);
+    this.setState({ colors });
   };
   render = () => {
     const {
@@ -163,22 +140,22 @@ class App extends Component {
     } = this;
 
     return (
-      <div className="App" display="flex" alignItems="center">
-        <table id="table" border="1">
+      <div className='App' display='flex' alignItems='center'>
+        <table id='table' border='1'>
           <tbody>
             {[]
-              .makeInc(noRows, (i) => i + 1)
+              .makeInc(noRows, i => i + 1)
               .map((row, k) => {
                 return (
                   <tr key={k}>
                     {[]
-                      .makeInc(noCols, (i) => i + 1)
+                      .makeInc(noCols, i => i + 1)
                       .map((col, index) => {
                         return (
                           <td
                             style={{
-                              width: '10px',
-                              height: '10px',
+                              width: "10px",
+                              height: "10px",
                               background: colors[`${row}_${col}`],
                             }}
                             data-row={row}
@@ -186,7 +163,7 @@ class App extends Component {
                             title={`row ${row} col ${col}`}
                             id={`${row}_${col}`}
                             key={`${row}_${col}`}
-                            onClick={(e) => onClick(e)}
+                            onClick={e => onClick(e)}
                           />
                         );
                       })}
@@ -198,14 +175,14 @@ class App extends Component {
         <div>
           <br />
           <ColorPicker
-            key={'colorPicker'}
+            key={"colorPicker"}
             inputColor={inputColor}
             setColor={setColor}
           />
           <SelectPaint
             selected={action}
             handleChange={handleChange}
-            key={'selectPaint'}
+            key={"selectPaint"}
           />
         </div>
       </div>
