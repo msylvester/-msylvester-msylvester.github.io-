@@ -58,7 +58,7 @@ class App extends Component {
       this.setState({ colors });
     }
     if (action === "fill")
-      this.bfs(parseInt(row), parseInt(col), colors, inputColor);
+      this.dfs(parseInt(row), parseInt(col), colors, inputColor);
   };
 
   handleChange = e => {
@@ -127,7 +127,55 @@ class App extends Component {
           }
         });
       });
+    }
+    this.setState({ colors });
+  };
+  /**
+   * @name dfs implmenents the DFS algo
+   * @param {integer} row the data-source row value of the cell clicked on
+   * @param {integer} col the data-source col value of the cell clicked on
+   * @param {Object} colors one-dimenionsal object with keys equal to the id of every <td>
+   * @param {string} newColor the selected color
+   */
+  dfs = (row, col, colors, newColor) => {
+    //instantiate an obj named vis which stores the visited value for cell (<td>) & the queue
+    let vis = {},
+      stackDFS = [];
 
+    for (let i = 1; i <= noRows; i++) {
+      for (let j = 1; j <= noCols; j++) {
+        vis[`${i}_${j}`] = 0;
+      }
+    }
+
+    // Push the initial datasource & the corresponding datasource in visit
+    stackDFS.push([row, col]);
+    vis[`${row}_${col}`] = 1;
+
+    while (stackDFS.length) {
+      //due to the laborious nature of checking, creating const to be safe
+      let coord = stackDFS.pop();
+      const nRow = coord[0],
+        nCol = coord[1],
+        preColor = colors[`${nRow}_${nCol}`];
+
+      colors[`${nRow}_${nCol}`] = newColor;
+
+      ["row", "col"].forEach(turn => {
+        [-1, 1].forEach(inc => {
+          let tempRow = turn === "row" ? parseInt(nRow) + parseInt(inc) : nRow,
+            tempCol = turn === "col" ? parseInt(nCol) + parseInt(inc) : nCol;
+
+          if (
+            this.validCoord(tempRow, tempCol) &&
+            vis[`${tempRow}_${tempCol}`] == 0 &&
+            colors[`${tempRow}_${tempCol}`] == preColor
+          ) {
+            stackDFS.push([tempRow, tempCol]);
+            vis[`${tempRow}_${tempCol}`] = 1;
+          }
+        });
+      });
     }
     this.setState({ colors });
   };
